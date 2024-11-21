@@ -26,44 +26,180 @@ const Contact = () => {
   };
 
   return (
-    <motion.section
-      id="contact"
-      className="relative py-12 md:py-20 bg-background"
-    >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative min-h-screen w-full py-20 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-background">
+        <div className="absolute w-full h-full">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        </div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center space-y-6"
+          className="text-center mb-20"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">Get In Touch</h2>
-          <p className="text-sm md:text-base lg:text-lg text-text max-w-2xl mx-auto">
-            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          <h2 className="text-primary font-mono text-2xl mb-4">Get In Touch</h2>
+          <h3 className="text-5xl md:text-6xl font-bold mb-8">Let's Connect</h3>
+          <p className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto">
+            Have a question or want to work together? Drop me a message!
           </p>
-          <div className="flex justify-center space-x-6">
-            <motion.a
-              href="mailto:samarthshinde40@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-background font-medium text-sm md:text-base transition-colors duration-300 hover:bg-primary/90"
-            >
-              Say Hello
-            </motion.a>
-            <motion.a
-              href="https://github.com/Samarth40"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-primary text-primary font-medium text-sm md:text-base transition-colors duration-300 hover:bg-primary/10"
-            >
-              View GitHub
-            </motion.a>
-          </div>
         </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="order-2 lg:order-1"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name Input */}
+              <div className="relative">
+                <motion.input
+                  type="text"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('name')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
+                           focus:border-primary outline-none transition-colors duration-300"
+                  placeholder="Your Name"
+                />
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
+                  initial={{ width: '0%' }}
+                  animate={{ width: focusedField === 'name' ? '100%' : '0%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+
+              {/* Email Input */}
+              <div className="relative">
+                <motion.input
+                  type="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('email')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
+                           focus:border-primary outline-none transition-colors duration-300"
+                  placeholder="Your Email"
+                />
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
+                  initial={{ width: '0%' }}
+                  animate={{ width: focusedField === 'email' ? '100%' : '0%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+
+              {/* Message Input */}
+              <div className="relative">
+                <motion.textarea
+                  name="message"
+                  value={formState.message}
+                  onChange={handleChange}
+                  onFocus={() => setFocusedField('message')}
+                  onBlur={() => setFocusedField(null)}
+                  required
+                  rows="6"
+                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
+                           focus:border-primary outline-none transition-colors duration-300 resize-none"
+                  placeholder="Your Message"
+                />
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
+                  initial={{ width: '0%' }}
+                  animate={{ width: focusedField === 'message' ? '100%' : '0%' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-primary text-background font-bold text-lg px-8 py-4 rounded-lg
+                         hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-3"
+              >
+                <span>Send Message</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <FaPaperPlane className="text-lg" />
+                </motion.div>
+              </motion.button>
+            </form>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="order-1 lg:order-2 text-center lg:text-left"
+          >
+            <div className="space-y-8">
+              {/* Email */}
+              <div>
+                <h4 className="text-xl font-bold mb-4">Email Me At</h4>
+                <a
+                  href="mailto:samarthshinde40@gmail.com"
+                  className="inline-flex items-center gap-3 text-lg text-primary hover:text-primary/80 transition-colors"
+                >
+                  <HiMail className="text-2xl" />
+                  <span>samarthshinde40@gmail.com</span>
+                </a>
+              </div>
+
+              {/* Social Links */}
+              <div>
+                <h4 className="text-xl font-bold mb-4">Follow Me</h4>
+                <div className="flex justify-center lg:justify-start gap-6">
+                  {[
+                    { icon: FaGithub, href: 'https://github.com/Samarth40' },
+                    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/samarth-shinde-791072271/' },
+                    { icon: FaTwitter, href: 'https://twitter.com/SamarthShinde40' }
+                  ].map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-secondary hover:text-primary transform hover:-translate-y-1 transition-all"
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <social.icon size={28} />
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Additional Info */}
+              <div className="bg-surface/30 backdrop-blur-sm border border-primary/10 rounded-lg p-6">
+                <h4 className="text-xl font-bold mb-4">Let's Create Something Amazing</h4>
+                <p className="text-lg text-secondary/80">
+                  Whether you have a project in mind or just want to chat, I'm always open to discussing new opportunities and ideas.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

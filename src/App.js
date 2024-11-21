@@ -40,14 +40,12 @@ function App() {
         <div className="relative w-full min-h-screen bg-background text-text">
           <Navbar />
           <RightSidebar />
-          <main className="relative w-full overflow-x-hidden">
+          <main className="relative w-full overflow-x-hidden max-w-[100vw]">
             <div className="flex flex-col items-center w-full">
-              <div className="w-full">
-                <Header key="header" />
-                <About key="about" />
-                <Projects key="projects" />
-                <Contact key="contact" />
-              </div>
+              <Header key="header" />
+              <About key="about" />
+              <Projects key="projects" />
+              <Contact key="contact" />
             </div>
           </main>
         </div>
