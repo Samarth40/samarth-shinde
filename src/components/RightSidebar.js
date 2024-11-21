@@ -48,7 +48,7 @@ const RightSidebar = () => {
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50"
+      className="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50 hidden md:block"
     >
       <div className="bg-background/80 backdrop-blur-lg rounded-full py-4 px-2 flex flex-col items-center gap-4 shadow-lg border border-gray-800">
         {/* Digital Clock */}
@@ -57,25 +57,28 @@ const RightSidebar = () => {
         </div>
 
         {/* Navigation Dots */}
-        {sections.map(({ id, icon: Icon, label }) => (
-          <div key={id} className="relative group">
-            <a
-              href={`#${id}`}
-              className={`block p-1.5 lg:p-2 rounded-full transition-all duration-300 ${
-                activeSection === id
-                  ? 'bg-primary text-background'
-                  : 'text-gray-400 hover:text-primary'
-              }`}
-            >
-              <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
-            </a>
-            
-            {/* Tooltip */}
-            <div className="absolute right-full mr-2 lg:mr-4 top-1/2 -translate-y-1/2 px-2 py-1 bg-primary text-background text-xs lg:text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-              {label}
+        <nav className="flex flex-col gap-3">
+          {sections.map(({ id, icon: Icon, label }) => (
+            <div key={id} className="relative group">
+              <a
+                href={`#${id}`}
+                className={`block p-1.5 lg:p-2 rounded-full transition-all duration-300 ${
+                  activeSection === id
+                    ? 'bg-primary text-background'
+                    : 'text-gray-400 hover:text-primary'
+                }`}
+                aria-label={label}
+              >
+                <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
+              </a>
+              
+              {/* Tooltip */}
+              <div className="absolute right-full mr-2 lg:mr-4 top-1/2 -translate-y-1/2 px-2 py-1 bg-primary text-background text-xs lg:text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                {label}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </nav>
       </div>
     </motion.div>
   );

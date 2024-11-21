@@ -4,11 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset */
+/* Reset and Base Styles */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 :root {
@@ -21,35 +22,66 @@
   --font-mono: 'Fira Code', monospace;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
+/* Base HTML/Body Setup */
+html {
   scroll-behavior: smooth;
   font-size: 16px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-space), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
   color: var(--text);
-  font-family: var(--font-space);
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
   position: relative;
+  max-width: 100vw;
 }
 
 #root {
   min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  max-width: 100vw;
   isolation: isolate;
 }
 
-/* Layout */
+/* Layout Container */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+/* Section Styles */
+section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+/* Fix for position: fixed elements */
+.fixed {
+  position: fixed !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* Custom Scrollbar */
@@ -169,13 +201,26 @@ body {
   }
   
   .container {
-    padding: 0 0.75rem;
+    padding: 0 1rem;
   }
 }
 
-/* Fix for position: fixed elements */
-.fixed {
-  position: fixed !important;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+/* Prevent iOS Safari Zoom */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Prevent horizontal overflow */
+img, svg, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for mobile viewport height */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
 }

@@ -15,24 +15,40 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Prevent scroll during loading
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-  }, []);
+
+    // Cleanup
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [loading]);
 
   return (
     <AnimatePresence mode="wait">
       {loading ? (
         <Loader key="loader" />
       ) : (
-        <div className="relative min-h-screen bg-background text-text overflow-x-hidden">
+        <div className="relative w-full min-h-screen bg-background text-text">
           <Navbar />
           <RightSidebar />
-          <main className="relative w-full">
-            <Header key="header" />
-            <About key="about" />
-            <Projects />
-            <Contact />
+          <main className="relative w-full overflow-x-hidden max-w-[100vw]">
+            <div className="flex flex-col items-center w-full">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <Header key="header" />
+                <About key="about" />
+                <Projects key="projects" />
+                <Contact key="contact" />
+              </div>
+            </div>
           </main>
         </div>
       )}

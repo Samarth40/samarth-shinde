@@ -95,7 +95,7 @@ const About = () => {
     <motion.section
       id="about"
       ref={ref}
-      className="min-h-screen py-20 bg-background relative overflow-hidden"
+      className="relative py-20 bg-background w-full overflow-hidden"
     >
       {/* Particle Background */}
       <Particles
@@ -146,10 +146,10 @@ const About = () => {
           },
           detectRetina: true,
         }}
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
       />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/90 z-0" />
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse" />
