@@ -121,7 +121,7 @@ const Header = () => {
                 {[
                   { icon: FaGithub, href: 'https://github.com/Samarth40' },
                   { icon: FaLinkedin, href: 'https://www.linkedin.com/in/samarth-shinde-791072271/' },
-                  { icon: FaTwitter, href: 'https://twitter.com/SamarthShinde40' }
+                  { icon: FaTwitter, href: 'https://x.com/Samarth4033' }
                 ].map((social, index) => (
                   <motion.a
                     key={index}

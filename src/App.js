@@ -42,10 +42,18 @@ function App() {
           <RightSidebar />
           <main className="relative w-full overflow-x-hidden max-w-[100vw]">
             <div className="flex flex-col items-center w-full">
-              <Header key="header" />
-              <About key="about" />
-              <Projects key="projects" />
-              <Contact key="contact" />
+              <section id="home">
+                <Header key="header" />
+              </section>
+              <section id="about">
+                <About key="about" />
+              </section>
+              <section id="projects">
+                <Projects key="projects" />
+              </section>
+              <section id="contact">
+                <Contact key="contact" />
+              </section>
             </div>
           </main>
         </div>

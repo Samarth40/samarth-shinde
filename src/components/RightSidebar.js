@@ -22,26 +22,45 @@ const RightSidebar = () => {
     { id: 'contact', icon: FiMail, label: 'Contact' }
   ];
 
-  // Update active section based on scroll position
+  // Improved scroll detection with Intersection Observer
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      sections.forEach(({ id }) => {
-        const element = document.getElementById(id);
-        if (element) {
-          const { top, bottom } = element.getBoundingClientRect();
-          if (top <= windowHeight / 2 && bottom >= windowHeight / 2) {
-            setActiveSection(id);
-          }
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach(({ id }) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
   }, []);
+
+  // Smooth scroll handler
+  const handleClick = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
 
   return (
     <motion.div
@@ -60,22 +79,29 @@ const RightSidebar = () => {
         <nav className="flex flex-col gap-3">
           {sections.map(({ id, icon: Icon, label }) => (
             <div key={id} className="relative group">
-              <a
+              <motion.a
                 href={`#${id}`}
+                onClick={(e) => handleClick(e, id)}
                 className={`block p-1.5 lg:p-2 rounded-full transition-all duration-300 ${
                   activeSection === id
                     ? 'bg-primary text-background'
                     : 'text-gray-400 hover:text-primary'
                 }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label={label}
               >
                 <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
-              </a>
+              </motion.a>
               
               {/* Tooltip */}
-              <div className="absolute right-full mr-2 lg:mr-4 top-1/2 -translate-y-1/2 px-2 py-1 bg-primary text-background text-xs lg:text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                whileHover={{ opacity: 1, x: 0 }}
+                className="absolute right-full mr-2 lg:mr-4 top-1/2 -translate-y-1/2 px-2 py-1 bg-primary text-background text-xs lg:text-sm rounded pointer-events-none"
+              >
                 {label}
-              </div>
+              </motion.div>
             </div>
           ))}
         </nav>

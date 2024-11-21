@@ -11,8 +11,9 @@ const Contact = () => {
   });
 
   const [focusedField, setFocusedField] = useState(null);
+  const [emailCopied, setEmailCopied] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add form submission logic here
     console.log('Form submitted:', formState);
@@ -24,6 +25,40 @@ const Contact = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('samarthshinde4033@gmail.com');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
+
+  const socialLinks = [
+    {
+      name: 'Email',
+      icon: HiMail,
+      href: 'mailto:samarthshinde4033@gmail.com',
+      action: handleCopyEmail,
+      color: 'hover:text-primary'
+    },
+    {
+      name: 'GitHub',
+      icon: FaGithub,
+      href: 'https://github.com/Samarth40',
+      color: 'hover:text-[#2ea44f]'
+    },
+    {
+      name: 'LinkedIn',
+      icon: FaLinkedin,
+      href: 'https://www.linkedin.com/in/samarth-shinde-b44200245/',
+      color: 'hover:text-[#0a66c2]'
+    },
+    {
+      name: 'Twitter',
+      icon: FaTwitter,
+      href: 'https://x.com/Samarth4033',
+      color: 'hover:text-[#1da1f2]'
+    }
+  ];
 
   return (
     <section id="contact" className="relative min-h-screen w-full py-20 overflow-hidden">
@@ -128,72 +163,57 @@ const Contact = () => {
               {/* Submit Button */}
               <motion.button
                 type="submit"
+                className="w-full bg-primary text-background rounded-lg px-8 py-4 text-lg font-medium
+                         hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-primary text-background font-bold text-lg px-8 py-4 rounded-lg
-                         hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-3"
               >
-                <span>Send Message</span>
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <FaPaperPlane className="text-lg" />
-                </motion.div>
+                Send Message
+                <FaPaperPlane className="text-sm" />
               </motion.button>
             </form>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2 text-center lg:text-left"
+            className="order-1 lg:order-2"
           >
-            <div className="space-y-8">
-              {/* Email */}
-              <div>
-                <h4 className="text-xl font-bold mb-4">Email Me At</h4>
-                <a
-                  href="mailto:samarthshinde40@gmail.com"
-                  className="inline-flex items-center gap-3 text-lg text-primary hover:text-primary/80 transition-colors"
-                >
-                  <HiMail className="text-2xl" />
-                  <span>samarthshinde40@gmail.com</span>
-                </a>
-              </div>
-
-              {/* Social Links */}
-              <div>
-                <h4 className="text-xl font-bold mb-4">Follow Me</h4>
-                <div className="flex justify-center lg:justify-start gap-6">
-                  {[
-                    { icon: FaGithub, href: 'https://github.com/Samarth40' },
-                    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/samarth-shinde-791072271/' },
-                    { icon: FaTwitter, href: 'https://twitter.com/SamarthShinde40' }
-                  ].map((social, index) => (
+            <div className="bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg p-8">
+              <h4 className="text-2xl font-bold mb-6">Connect With Me</h4>
+              <div className="space-y-6">
+                {socialLinks.map((link, index) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center gap-4"
+                  >
                     <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
+                      href={link.href}
+                      target={link.name !== 'Email' ? '_blank' : undefined}
                       rel="noopener noreferrer"
-                      className="text-secondary hover:text-primary transform hover:-translate-y-1 transition-all"
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
+                      onClick={link.action}
+                      className={`flex items-center gap-4 text-lg ${link.color} transition-colors duration-300`}
+                      whileHover={{ x: 10 }}
                     >
-                      <social.icon size={28} />
+                      <link.icon className="text-2xl" />
+                      <span>{link.name === 'Email' ? 'samarthshinde4033@gmail.com' : link.name}</span>
                     </motion.a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Additional Info */}
-              <div className="bg-surface/30 backdrop-blur-sm border border-primary/10 rounded-lg p-6">
-                <h4 className="text-xl font-bold mb-4">Let's Create Something Amazing</h4>
-                <p className="text-lg text-secondary/80">
-                  Whether you have a project in mind or just want to chat, I'm always open to discussing new opportunities and ideas.
-                </p>
+                    {link.name === 'Email' && (
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: emailCopied ? 1 : 0 }}
+                        className="text-primary text-sm"
+                      >
+                        Copied!
+                      </motion.span>
+                    )}
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
