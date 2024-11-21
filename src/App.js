@@ -40,9 +40,9 @@ function App() {
         <div className="relative w-full min-h-screen bg-background text-text">
           <Navbar />
           <RightSidebar />
-          <main className="relative w-full overflow-x-hidden max-w-[100vw]">
+          <main className="relative w-full overflow-x-hidden">
             <div className="flex flex-col items-center w-full">
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="w-full">
                 <Header key="header" />
                 <About key="about" />
                 <Projects key="projects" />
