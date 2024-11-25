@@ -1,5 +1,5 @@
 .bg-grid-pattern {
-  background-size: 30px 30px;
+  background-size: 20px 20px;
   background-image: 
     linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
@@ -11,7 +11,7 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 30px 30px;
+    background-position: 20px 20px;
   }
 }
 
@@ -23,8 +23,6 @@
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
-  padding: 1.5rem;
-  min-height: 220px;
 }
 
 .skill-card::before {
@@ -51,8 +49,15 @@
 
 .skill-icon-wrapper {
   position: relative;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 640px) {
+  .skill-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .skill-icon {
@@ -65,7 +70,6 @@
   justify-content: center;
   color: var(--primary);
   transition: all 0.3s ease;
-  font-size: 1.5rem;
 }
 
 .skill-card:hover .skill-icon {
@@ -73,17 +77,20 @@
   transform: scale(1.05);
 }
 
-.skill-title {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+@media (max-width: 640px) {
+  .skill-card {
+    margin-bottom: 1rem;
+  }
+  
+  .skill-icon {
+    font-size: 1.25rem;
+  }
 }
 
-.skill-description {
-  color: #888;
-  font-size: 0.95rem;
-  line-height: 1.6;
+@media (min-width: 641px) {
+  .skill-icon {
+    font-size: 1.5rem;
+  }
 }
 
 /* Cosmic Background */

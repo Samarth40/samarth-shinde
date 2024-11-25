@@ -53,19 +53,19 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-24 relative">
+    <section id="skills" className="py-12 sm:py-24 relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 inline-block">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 inline-block">
             <span className="text-white">Core</span>{' '}
             <span className="text-[var(--primary)]">Skills</span>
           </h2>
-          <p className="text-[var(--text)] text-lg max-w-2xl mx-auto">
+          <p className="text-[var(--text)] text-base sm:text-lg max-w-2xl mx-auto">
             Transforming ideas into reality through modern solutions
           </p>
         </motion.div>
@@ -75,33 +75,33 @@ const Skills = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-wrap justify-between gap-6"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-none sm:flex sm:flex-wrap sm:justify-between sm:gap-6"
         >
           {skills.map((skill, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="skill-card group flex-1 min-w-[calc(50%-1.5rem)]"
+              className="skill-card sm:flex-1 sm:min-w-[calc(50%-1rem)]"
             >
-              <div className="p-6 relative z-10">
-                <div className="flex items-start gap-4">
+              <div className="p-4 sm:p-6 relative z-10">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="skill-icon-wrapper flex-shrink-0">
                     <div className="skill-icon">
                       {skill.icon}
                     </div>
                   </div>
                   <div className="flex-grow min-w-0">
-                    <h3 className="text-lg font-bold text-white mb-2">
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">
                       {skill.title}
                     </h3>
-                    <p className="text-[var(--text)] mb-3 text-sm">
+                    <p className="text-[var(--text)] mb-3 text-sm sm:text-base">
                       {skill.description}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {skill.keywords.map((keyword, kidx) => (
-                        <span 
+                        <span
                           key={kidx}
-                          className="text-xs px-2 py-0.5 rounded-full bg-[var(--surface)] text-[var(--primary)] border border-[var(--primary)] opacity-80"
+                          className="px-2 py-1 text-xs sm:text-sm bg-background/50 text-primary rounded-full border border-primary/20"
                         >
                           {keyword}
                         </span>

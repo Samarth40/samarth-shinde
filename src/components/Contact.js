@@ -61,12 +61,12 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative min-h-screen w-full py-20 overflow-hidden">
+    <section id="contact" className="relative min-h-screen w-full py-12 sm:py-20 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-background">
         <div className="absolute w-full h-full">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-primary/10 rounded-full blur-3xl"></div>
         </div>
       </div>
 
@@ -76,16 +76,16 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20"
         >
-          <h2 className="text-primary font-mono text-2xl mb-4">Get In Touch</h2>
-          <h3 className="text-5xl md:text-6xl font-bold mb-8">Let's Connect</h3>
-          <p className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto">
+          <h2 className="text-primary font-mono text-xl sm:text-2xl mb-3 sm:mb-4">Get In Touch</h2>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8">Let's Connect</h3>
+          <p className="text-base sm:text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto px-4">
             Have a question or want to work together? Drop me a message!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -93,10 +93,10 @@ const Contact = () => {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Name Input */}
               <div className="relative">
-                <motion.input
+                <input
                   type="text"
                   name="name"
                   value={formState.name}
@@ -104,21 +104,14 @@ const Contact = () => {
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
-                           focus:border-primary outline-none transition-colors duration-300"
+                  className="w-full bg-surface/50 border border-text/10 rounded-lg px-4 py-3 sm:py-4 text-base sm:text-lg text-text placeholder-text/50 focus:outline-none focus:border-primary/50 transition-colors"
                   placeholder="Your Name"
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: '0%' }}
-                  animate={{ width: focusedField === 'name' ? '100%' : '0%' }}
-                  transition={{ duration: 0.3 }}
                 />
               </div>
 
               {/* Email Input */}
               <div className="relative">
-                <motion.input
+                <input
                   type="email"
                   name="email"
                   value={formState.email}
@@ -126,51 +119,34 @@ const Contact = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
-                           focus:border-primary outline-none transition-colors duration-300"
+                  className="w-full bg-surface/50 border border-text/10 rounded-lg px-4 py-3 sm:py-4 text-base sm:text-lg text-text placeholder-text/50 focus:outline-none focus:border-primary/50 transition-colors"
                   placeholder="Your Email"
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: '0%' }}
-                  animate={{ width: focusedField === 'email' ? '100%' : '0%' }}
-                  transition={{ duration: 0.3 }}
                 />
               </div>
 
               {/* Message Input */}
               <div className="relative">
-                <motion.textarea
+                <textarea
                   name="message"
                   value={formState.message}
                   onChange={handleChange}
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  rows="6"
-                  className="w-full bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg px-6 py-4 text-lg
-                           focus:border-primary outline-none transition-colors duration-300 resize-none"
+                  rows="4"
+                  className="w-full bg-surface/50 border border-text/10 rounded-lg px-4 py-3 sm:py-4 text-base sm:text-lg text-text placeholder-text/50 focus:outline-none focus:border-primary/50 transition-colors resize-none"
                   placeholder="Your Message"
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-primary"
-                  initial={{ width: '0%' }}
-                  animate={{ width: focusedField === 'message' ? '100%' : '0%' }}
-                  transition={{ duration: 0.3 }}
                 />
               </div>
 
               {/* Submit Button */}
-              <motion.button
+              <button
                 type="submit"
-                className="w-full bg-primary text-background rounded-lg px-8 py-4 text-lg font-medium
-                         hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full bg-primary text-background font-semibold rounded-lg px-6 py-3 sm:py-4 flex items-center justify-center space-x-2 hover:bg-primary/90 transition-colors"
               >
-                Send Message
-                <FaPaperPlane className="text-sm" />
-              </motion.button>
+                <span className="text-base sm:text-lg">Send Message</span>
+                <FaPaperPlane className="text-sm sm:text-base" />
+              </button>
             </form>
           </motion.div>
 
@@ -179,42 +155,34 @@ const Contact = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 lg:pl-8"
           >
-            <div className="bg-surface/30 backdrop-blur-sm border-2 border-primary/20 rounded-lg p-8">
-              <h4 className="text-2xl font-bold mb-6">Connect With Me</h4>
-              <div className="space-y-6">
-                {socialLinks.map((link, index) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-4"
-                  >
-                    <motion.a
-                      href={link.href}
-                      target={link.name !== 'Email' ? '_blank' : undefined}
-                      rel="noopener noreferrer"
-                      onClick={link.action}
-                      className={`flex items-center gap-4 text-lg ${link.color} transition-colors duration-300`}
-                      whileHover={{ x: 10 }}
-                    >
-                      <link.icon className="text-2xl" />
-                      <span>{link.name === 'Email' ? 'samarthshinde4033@gmail.com' : link.name}</span>
-                    </motion.a>
-                    {link.name === 'Email' && (
-                      <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: emailCopied ? 1 : 0 }}
-                        className="text-primary text-sm"
-                      >
-                        Copied!
-                      </motion.span>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
+            <div className="text-center lg:text-left mb-8">
+              <h4 className="text-2xl sm:text-3xl font-bold mb-4">Connect With Me</h4>
+              <p className="text-base sm:text-lg text-secondary/80 mb-6">
+                Feel free to reach out through any of these platforms
+              </p>
+            </div>
+
+            <div className="flex flex-col space-y-3 sm:space-y-4">
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={link.action}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex items-center space-x-4 p-3 sm:p-4 rounded-lg bg-surface/50 border border-text/10 hover:border-primary/50 transition-all ${link.color}`}
+                >
+                  <link.icon className="text-xl sm:text-2xl" />
+                  <span className="text-base sm:text-lg">{link.name}</span>
+                  {link.name === 'Email' && emailCopied && (
+                    <span className="text-primary text-sm">Copied!</span>
+                  )}
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </div>
