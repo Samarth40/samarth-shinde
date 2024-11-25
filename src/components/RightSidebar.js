@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiHome, FiUser, FiCode, FiMail, FiClock } from 'react-icons/fi';
+import { FiHome, FiUser, FiCode, FiMail, FiClock, FiTool } from 'react-icons/fi';
 
 const RightSidebar = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -18,6 +18,7 @@ const RightSidebar = () => {
   const sections = [
     { id: 'home', icon: FiHome, label: 'Home' },
     { id: 'about', icon: FiUser, label: 'About' },
+    { id: 'skills', icon: FiTool, label: 'Skills' },
     { id: 'projects', icon: FiCode, label: 'Projects' },
     { id: 'contact', icon: FiMail, label: 'Contact' }
   ];
@@ -69,9 +70,9 @@ const RightSidebar = () => {
       transition={{ duration: 0.5 }}
       className="fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-50 hidden md:block"
     >
-      <div className="bg-background/80 backdrop-blur-lg rounded-full py-4 px-2 flex flex-col items-center gap-4 shadow-lg border border-gray-800">
+      <div className="bg-primary/90 backdrop-blur-md rounded-lg py-4 px-3 flex flex-col items-center gap-4 shadow-xl border border-primary/20">
         {/* Digital Clock */}
-        <div className="text-xs lg:text-sm font-mono text-primary">
+        <div className="text-xs lg:text-sm font-mono text-white">
           {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
 

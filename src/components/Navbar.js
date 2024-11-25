@@ -101,27 +101,30 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                className={`relative text-secondary transition-all duration-300 group py-2 px-4
-                  ${activeSection === link.href.slice(1) ? 'text-primary' : 'hover:text-primary'}`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -2 }}
-              >
-                <span className="relative z-10">{link.name}</span>
-                {activeSection === link.href.slice(1) && (
-                  <motion.span
-                    layoutId="activeSection"
-                    className="absolute inset-0 bg-primary/10 rounded-md"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </motion.a>
-            ))}
+            <ul className="flex space-x-10">
+              {navLinks.map((link, index) => (
+                <li key={link.name}>
+                  <motion.a
+                    href={link.href}
+                    className={`relative text-secondary transition-all duration-300 group py-2 px-4
+                      ${activeSection === link.href.slice(1) ? 'text-primary' : 'hover:text-primary'}`}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -2 }}
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    {activeSection === link.href.slice(1) && (
+                      <motion.span
+                        layoutId="activeSection"
+                        className="absolute inset-0 bg-primary/10 rounded-md"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
             <motion.a
               href="https://drive.google.com/file/d/1VcTaJ76olOxHuhkYcQVIrSgzVOUAXoL1/view?usp=drive_link"
               target="_blank"
@@ -165,30 +168,33 @@ const Navbar = () => {
               className="md:hidden fixed top-0 right-0 w-[300px] h-screen bg-background/95 backdrop-blur-lg shadow-lg"
             >
               <div className="p-6 pt-24 space-y-6">
-                {navLinks.map((link, index) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    className={`block text-secondary transition-colors px-4 py-3 rounded-md relative overflow-hidden group
-                      ${activeSection === link.href.slice(1) ? 'text-primary' : 'hover:text-primary'}`}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span className="relative z-10">{link.name}</span>
-                    <motion.span
-                      className="absolute inset-0 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
-                    />
-                    {activeSection === link.href.slice(1) && (
-                      <motion.span
-                        layoutId="activeMobileSection"
-                        className="absolute inset-0 bg-primary/10"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                  </motion.a>
-                ))}
+                <ul className="flex flex-col space-y-6">
+                  {navLinks.map((link, index) => (
+                    <li key={link.name}>
+                      <motion.a
+                        href={link.href}
+                        className={`block text-secondary transition-colors px-4 py-3 rounded-md relative overflow-hidden group
+                          ${activeSection === link.href.slice(1) ? 'text-primary' : 'hover:text-primary'}`}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span className="relative z-10">{link.name}</span>
+                        <motion.span
+                          className="absolute inset-0 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                        />
+                        {activeSection === link.href.slice(1) && (
+                          <motion.span
+                            layoutId="activeMobileSection"
+                            className="absolute inset-0 bg-primary/10"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
+                      </motion.a>
+                    </li>
+                  ))}
+                </ul>
                 <motion.a
                   href="https://drive.google.com/file/d/1VcTaJ76olOxHuhkYcQVIrSgzVOUAXoL1/view?usp=drive_link"
                   target="_blank"

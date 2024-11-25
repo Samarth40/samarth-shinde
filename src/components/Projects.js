@@ -1,8 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaTools, FaCog } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { SiOpenai } from 'react-icons/si';
 
 const Projects = () => {
+  const projects = [
+    {
+      title: "Sam_AI-Lucid Dream",
+      description: "An innovative AI-powered dream journal and interpretation platform. Leveraging advanced AI technology to help users understand and explore their dreams through natural language processing and personalized insights.",
+      technologies: ["OpenAI", "React", "TailwindCSS", "Hugging Face API", "Unsplash API"],
+      githubLink: "https://github.com/Samarth40/Sam_AI-LucidDreams",
+      liveLink: "https://sam-ai-luciddreams.onrender.com/",
+      image: "/images/sam-ai-project.png"
+    },
+    // More projects can be added here
+  ];
+
   return (
     <motion.section
       id="projects"
@@ -17,7 +30,7 @@ const Projects = () => {
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Section Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -26,116 +39,86 @@ const Projects = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              My Work
+              Featured Projects
             </h2>
             <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
-              Projects Under Construction
+              Showcasing my latest work in AI and web development
             </p>
           </motion.div>
 
-          {/* Creative Coming Soon Display */}
-          <div className="relative max-w-3xl mx-auto">
-            {/* Code Editor Style Container */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-surface/30 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden"
-            >
-              {/* Editor Top Bar */}
-              <div className="flex items-center gap-2 bg-background/50 px-4 py-3 border-b border-primary/10">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="ml-2 text-secondary text-sm font-mono">projects.js</span>
-              </div>
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 gap-8 px-4 sm:px-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-surface/30 backdrop-blur-sm border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <div className="grid md:grid-cols-2 gap-6 p-4">
+                  {/* Project Image */}
+                  <div className="relative group overflow-hidden rounded-lg shadow-md">
+                    <div className="aspect-[16/9] w-full h-full">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                        style={{ maxHeight: '400px' }}
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
 
-              {/* Code Content */}
-              <div className="p-8">
-                <div className="font-mono text-lg space-y-4">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-secondary"
-                  >
-                    <span className="text-primary">const</span> projects = {'{'}
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="pl-8"
-                  >
-                    status: <span className="text-primary">'in_development'</span>,
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="pl-8"
-                  >
-                    progress: <span className="text-primary">'loading...'</span>,
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="pl-8"
-                  >
-                    eta: <span className="text-primary">'coming_soon'</span>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
-                  >
-                    {'};'}
-                  </motion.div>
-                </div>
-
-                {/* Loading Animation */}
-                <div className="mt-8 flex justify-center">
-                  <div className="flex items-center gap-4">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    >
-                      <FaCog className="w-8 h-8 text-primary" />
-                    </motion.div>
-                    <motion.div
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    >
-                      <FaTools className="w-8 h-8 text-primary" />
-                    </motion.div>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    >
-                      <FaCode className="w-8 h-8 text-primary" />
-                    </motion.div>
+                  {/* Project Info */}
+                  <div className="p-4 flex flex-col justify-between space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                        {project.title}
+                      </h3>
+                      <p className="text-secondary/80 mb-6 leading-relaxed">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <motion.a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-secondary hover:text-primary transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaGithub className="w-5 h-5" />
+                        <span>Code</span>
+                      </motion.a>
+                      <motion.a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-secondary hover:text-primary transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaExternalLinkAlt className="w-5 h-5" />
+                        <span>Live Demo</span>
+                      </motion.a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Message */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="text-center mt-12"
-            >
-              <p className="text-xl text-secondary/80">
-                Exciting projects are in development! Check back soon to see what I'm building.
-              </p>
-            </motion.div>
-
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

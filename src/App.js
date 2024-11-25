@@ -6,7 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Loader from './components/Loader';
-import RightSidebar from './components/RightSidebar';
+import Skills from './components/Skills';
 import './App.css';
 import './index.css';
 import './styles/globals.css';
@@ -39,7 +39,6 @@ function App() {
       ) : (
         <div className="relative w-full min-h-screen bg-background text-text">
           <Navbar />
-          <RightSidebar />
           <main className="relative w-full overflow-x-hidden max-w-[100vw]">
             <div className="flex flex-col items-center w-full">
               <section id="home">
@@ -47,6 +46,9 @@ function App() {
               </section>
               <section id="about">
                 <About key="about" />
+              </section>
+              <section id="skills">
+                <Skills key="skills" />
               </section>
               <section id="projects">
                 <Projects key="projects" />
