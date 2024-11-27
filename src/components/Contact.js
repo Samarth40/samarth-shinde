@@ -1,29 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef();
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
     message: ''
   });
 
   const [focusedField, setFocusedField] = useState(null);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formState);
+    setSubmitStatus({ type: 'loading', message: 'Sending message...' });
+
+    try {
+      await emailjs.sendForm(
+        'service_euci9c6',
+        'template_9py9fpm',
+        form.current,
+        'qADHIQp58ZDAzLBGq'
+      );
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent successfully! I will get back to you soon.'
+      });
+
+      // Clear form
+      setFormState({
+        user_name: '',
+        user_email: '',
+        message: ''
+      });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({ type: '', message: '' });
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again later.'
+      });
+
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({ type: '', message: '' });
+      }, 5000);
+    }
   };
 
   const handleChange = (e) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormState(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const handleCopyEmail = () => {
@@ -61,7 +102,10 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative min-h-screen w-full py-12 sm:py-20 overflow-hidden">
+    <section
+      id="contact"
+      className="min-h-screen relative flex flex-col justify-center py-20"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-background">
         <div className="absolute w-full h-full">
@@ -78,8 +122,8 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-20"
         >
-          <h2 className="text-primary font-mono text-xl sm:text-2xl mb-3 sm:mb-4">Get In Touch</h2>
-          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8">Let's Connect</h3>
+          <h2 className="text-primary font-mono text-xl sm:text-2xl mb-3 sm:mb-4 bg-gradient-to-r from-primary via-[#38bdf8] to-primary bg-clip-text text-transparent">Get In Touch</h2>
+          <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-primary via-[#38bdf8] to-primary bg-clip-text text-transparent">Let's Connect</h3>
           <p className="text-base sm:text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto px-4">
             Have a question or want to work together? Drop me a message!
           </p>
@@ -93,13 +137,13 @@ const Contact = () => {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Name Input */}
               <div className="relative">
                 <input
                   type="text"
-                  name="name"
-                  value={formState.name}
+                  name="user_name"
+                  value={formState.user_name}
                   onChange={handleChange}
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
@@ -113,8 +157,8 @@ const Contact = () => {
               <div className="relative">
                 <input
                   type="email"
-                  name="email"
-                  value={formState.email}
+                  name="user_email"
+                  value={formState.user_email}
                   onChange={handleChange}
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
@@ -133,19 +177,43 @@ const Contact = () => {
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  rows="4"
-                  className="w-full bg-surface/50 border border-text/10 rounded-lg px-4 py-3 sm:py-4 text-base sm:text-lg text-text placeholder-text/50 focus:outline-none focus:border-primary/50 transition-colors resize-none"
+                  rows="6"
+                  className="w-full min-h-[200px] bg-surface/50 border border-text/10 rounded-lg px-4 py-3 sm:py-4 text-base sm:text-lg text-text placeholder-text/50 focus:outline-none focus:border-primary/50 transition-colors resize-none"
                   placeholder="Your Message"
                 />
               </div>
 
+              {/* Status Message */}
+              {submitStatus.message && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-center p-3 rounded-lg ${
+                    submitStatus.type === 'success' ? 'bg-green-500/10 text-green-500' :
+                    submitStatus.type === 'error' ? 'bg-red-500/10 text-red-500' :
+                    'bg-primary/10 text-primary'
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
+
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-primary text-background font-semibold rounded-lg px-6 py-3 sm:py-4 flex items-center justify-center space-x-2 hover:bg-primary/90 transition-colors"
+                disabled={submitStatus.type === 'loading'}
+                className={`w-full bg-primary text-background font-semibold rounded-lg px-6 py-3 sm:py-4 flex items-center justify-center space-x-2 transition-colors ${
+                  submitStatus.type === 'loading' 
+                    ? 'opacity-75 cursor-not-allowed' 
+                    : 'hover:bg-primary/90'
+                }`}
               >
-                <span className="text-base sm:text-lg">Send Message</span>
-                <FaPaperPlane className="text-sm sm:text-base" />
+                <span className="text-base sm:text-lg">
+                  {submitStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
+                </span>
+                <FaPaperPlane className={`text-sm sm:text-base ${
+                  submitStatus.type === 'loading' ? 'animate-pulse' : ''
+                }`} />
               </button>
             </form>
           </motion.div>
@@ -158,13 +226,13 @@ const Contact = () => {
             className="order-1 lg:order-2 lg:pl-8"
           >
             <div className="text-center lg:text-left mb-8">
-              <h4 className="text-2xl sm:text-3xl font-bold mb-4">Connect With Me</h4>
+              <h4 className="text-2xl sm:text-3xl font-bold mb-4 bg-gradient-to-r from-primary via-[#38bdf8] to-primary bg-clip-text text-transparent">Connect With Me</h4>
               <p className="text-base sm:text-lg text-secondary/80 mb-6">
                 Feel free to reach out through any of these platforms
               </p>
             </div>
 
-            <div className="flex flex-col space-y-3 sm:space-y-4">
+            <div className="grid gap-3 sm:gap-4">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}
@@ -174,10 +242,12 @@ const Contact = () => {
                   onClick={link.action}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`flex items-center space-x-4 p-3 sm:p-4 rounded-lg bg-surface/50 border border-text/10 hover:border-primary/50 transition-all ${link.color}`}
+                  className={`group relative flex items-start justify-between p-4 rounded-lg bg-surface/50 border border-text/10 hover:border-primary/50 transition-all ${link.color}`}
                 >
-                  <link.icon className="text-xl sm:text-2xl" />
-                  <span className="text-base sm:text-lg">{link.name}</span>
+                  <div className="flex items-start">
+                    <link.icon className="text-2xl mt-0.5" />
+                    <span className="ml-4 text-lg">{link.name}</span>
+                  </div>
                   {link.name === 'Email' && emailCopied && (
                     <span className="text-primary text-sm">Copied!</span>
                   )}

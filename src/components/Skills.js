@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { RiCodeBoxLine, RiTeamLine, RiRobot2Line, RiProjectorLine } from 'react-icons/ri';
+import { RiCodeBoxLine, RiTeamLine, RiLayoutLine, RiPaletteLine } from 'react-icons/ri';
 import './Skills.css';
 
 const Skills = () => {
@@ -18,16 +18,16 @@ const Skills = () => {
       keywords: ["Leadership", "Communication", "Teamwork"]
     },
     {
-      title: "Automation",
-      icon: <RiRobot2Line className="text-2xl" />,
-      description: "Streamlining workflows and processes",
-      keywords: ["Process Design", "Efficiency", "Integration"]
+      title: "Frontend Development",
+      icon: <RiLayoutLine className="text-2xl" />,
+      description: "Building responsive and interactive web applications",
+      keywords: ["React.js", "Tailwind CSS", "Modern UI/UX"]
     },
     {
-      title: "Project Management",
-      icon: <RiProjectorLine className="text-2xl" />,
-      description: "Leading teams and delivering results",
-      keywords: ["Agile", "Strategy", "Delivery"]
+      title: "UI/UX Design",
+      icon: <RiPaletteLine className="text-2xl" />,
+      description: "Creating intuitive and engaging user experiences",
+      keywords: ["Design Systems", "User-Centric", "Visual Design"]
     }
   ];
 
@@ -53,7 +53,10 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-12 sm:py-24 relative">
+    <section
+      id="skills"
+      className="min-h-screen relative flex flex-col justify-center py-20"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,11 +64,12 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 inline-block">
-            <span className="text-white">Core</span>{' '}
-            <span className="text-[var(--primary)]">Skills</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-primary via-[#38bdf8] to-primary bg-clip-text text-transparent">
+              Skills & Expertise
+            </span>
           </h2>
-          <p className="text-[var(--text)] text-base sm:text-lg max-w-2xl mx-auto">
+          <p className="text-secondary/80 max-w-2xl mx-auto">
             Transforming ideas into reality through modern solutions
           </p>
         </motion.div>

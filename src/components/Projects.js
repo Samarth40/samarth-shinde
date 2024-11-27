@@ -17,9 +17,9 @@ const Projects = () => {
   ];
 
   return (
-    <motion.section
+    <section
       id="projects"
-      className="min-h-screen py-20 bg-background relative overflow-hidden"
+      className="min-h-screen relative flex flex-col justify-center py-20"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-background">
@@ -38,8 +38,10 @@ const Projects = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Featured Projects
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-[#38bdf8] to-primary bg-clip-text text-transparent">
+                Featured Projects
+              </span>
             </h2>
             <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
               Showcasing my latest work in AI and web development
@@ -122,7 +124,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

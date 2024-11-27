@@ -6,10 +6,11 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 const Header = () => {
   return (
     <motion.section
+      id="home"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen relative flex items-center justify-center py-20 overflow-hidden"
+      className="min-h-screen flex items-center justify-center py-20 overflow-hidden relative"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-background">
@@ -26,7 +27,7 @@ const Header = () => {
           {/* Main Content */}
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
             {/* Left Content */}
-            <div className="w-full md:w-3/5 space-y-6 text-center md:text-left">
+            <div className="w-full md:w-3/5 space-y-3 text-center md:text-left">
               {/* Greeting */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -44,7 +45,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold -mt-1"
               >
                 <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                   Samarth Shinde
@@ -56,7 +57,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary/80"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary/80 -mt-1"
               >
                 <TypeAnimation
                   sequence={[
@@ -78,7 +79,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="text-lg md:text-xl text-secondary/80 max-w-2xl"
+                className="text-lg md:text-xl text-secondary/80 max-w-2xl mt-2"
               >
                 Transforming ideas into reality through the power of no-code and low-code solutions. 
                 Passionate about building efficient, scalable applications and fostering tech communities.
@@ -92,13 +93,15 @@ const Header = () => {
                 className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start pt-4"
               >
                 <motion.a
-                  href="#contact"
+                  href="https://drive.google.com/file/d/1nxaPT6wlde4p-PXNN3iudeSoY2ndyTOk/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-3 bg-primary text-background rounded-lg font-medium text-lg
                            hover:bg-primary/90 transition-colors duration-300 w-full sm:w-auto text-center"
                 >
-                  Get in Touch
+                  My Resume
                 </motion.a>
                 <motion.a
                   href="#projects"
@@ -174,7 +177,7 @@ const Header = () => {
                   
                   {/* Image */}
                   <img
-                    src="/images/profile-pic.jpg"
+                    src="/images/profile-pic.png"
                     alt="Samarth Shinde"
                     className="w-full h-full rounded-full object-cover relative z-10"
                   />
@@ -212,27 +215,6 @@ const Header = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-          >
-            <span className="text-secondary/60 text-sm mb-2">Scroll Down</span>
-            <motion.div
-              animate={{
-                y: [0, 8, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              className="w-5 h-5 border-r-2 border-b-2 border-primary transform rotate-45"
-            />
-          </motion.div>
         </div>
       </div>
     </motion.section>
