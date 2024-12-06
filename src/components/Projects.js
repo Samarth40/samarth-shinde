@@ -13,6 +13,14 @@ const Projects = () => {
       liveLink: "https://sam-ai-luciddreams.onrender.com/",
       image: "/images/sam-ai-project.png"
     },
+    {
+      title: "Mood Lens",
+      description: "A cutting-edge mood detection application that uses AI to analyze facial expressions and provide insights into emotional states.",
+      technologies: ["OpenAI", "React", "TailwindCSS", "TMDB API","FACE API"],
+      githubLink: "https://github.com/Samarth40/mood-to-movie",
+      liveLink: "https://mood-to-movie.vercel.app/",
+      image: "/images/mood-lens-project.png"
+    },
     // More projects can be added here
   ];
 
