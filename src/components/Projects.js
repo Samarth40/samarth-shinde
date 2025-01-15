@@ -10,7 +10,7 @@ const Projects = () => {
       description: "An innovative AI-powered dream journal and interpretation platform. Leveraging advanced AI technology to help users understand and explore their dreams through natural language processing and personalized insights.",
       technologies: ["OpenAI", "React", "TailwindCSS", "Hugging Face API", "Unsplash API"],
       githubLink: "https://github.com/Samarth40/Sam_AI-LucidDreams",
-      liveLink: "https://sam-ai-luciddreams.onrender.com/",
+      liveLink: "https://sam-ai-lucid-dreams.vercel.app/",
       image: "/images/sam-ai-project.png"
     },
     {
