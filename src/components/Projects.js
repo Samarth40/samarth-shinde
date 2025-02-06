@@ -6,6 +6,14 @@ import { SiOpenai } from 'react-icons/si';
 const Projects = () => {
   const projects = [
     {
+      title: "TrendForecaster",
+      description: "A modern AI-powered trend forecasting platform that helps businesses stay ahead of market trends with real-time analysis and predictions. Features include AI-powered news analysis, trend detection, and an intelligent chatbot assistant.",
+      technologies: ["React.js", "TailwindCSS", "Firebase Auth", "Firestore", "Shadcn/ui", "Framer Motion", "Vercel"],
+      githubLink: "https://github.com/Samarth40/trendforecaster",
+      liveLink: "https://trendforecaster.vercel.app/",
+      image: "/images/trend-forecaster.png"
+    },
+    {
       title: "Sam_AI-Lucid Dream",
       description: "An innovative AI-powered dream journal and interpretation platform. Leveraging advanced AI technology to help users understand and explore their dreams through natural language processing and personalized insights.",
       technologies: ["OpenAI", "React", "TailwindCSS", "Hugging Face API", "Unsplash API"],
