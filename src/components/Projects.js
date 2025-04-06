@@ -10,8 +10,8 @@ const Projects = () => {
       title: "Vanaraksha",
       description: "An innovative platform combining AI and blockchain for digital tree adoption and environmental conservation. Features AI-powered tree information using Mistral-7B, NFT certificates on Aptos blockchain, and real-time impact tracking.",
       technologies: ["React.js", "TailwindCSS", "Firebase", "Aptos Labs", "Mistral-7B", "Firestore", "Cloudinary"],
-      githubLink: "https://lnkd.in/dEh3UbsP",
-      liveLink: "https://lnkd.in/dHUfC4iU",
+      githubLink: "https://github.com/Samarth40/tree-adoption",
+      liveLink: "https://tree-adoption.vercel.app/",
       image: "/images/vanaraksha.png"
     },
     {
