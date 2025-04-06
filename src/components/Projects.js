@@ -90,8 +90,9 @@ const Projects = () => {
                 <div className="relative aspect-video overflow-hidden">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.technologies.slice(0, 3).join(", ")} project screenshot`}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                     <div className="p-4 w-full">
@@ -178,8 +179,9 @@ const Projects = () => {
                         </div>
                         <img
                           src={project.image}
-                          alt={project.title}
+                          alt={`Detailed view of ${project.title} - Project using ${project.technologies.slice(0, 3).join(", ")}`}
                           className="w-full h-64 object-cover rounded-lg mb-4"
+                          loading="lazy"
                         />
                         <p className="text-secondary/80 mb-4">{project.description}</p>
                         <div className="flex flex-wrap gap-2 mb-4">

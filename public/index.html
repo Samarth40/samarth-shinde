@@ -3,23 +3,85 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#0a192f" />
     <meta
       name="description"
-      content="Samarth Shinde - No-Code/Low-Code Enthusiast & Community Leader"
+      content="Samarth Shinde - No-Code/Low-Code Developer, Frontend Specialist & Tech Community Leader. Explore my portfolio showcasing AI projects, web applications and more."
     />
+    <meta name="keywords" content="Samarth Shinde, portfolio, web developer, frontend, React, no-code, low-code, AI projects, tech community" />
+    <meta name="author" content="Samarth Shinde" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samarthshinde.tech/" />
+    <meta property="og:title" content="Samarth Shinde | Tech Enthusiast & Developer" />
+    <meta property="og:description" content="Explore my portfolio showcasing AI projects, web applications and skills in no-code/low-code development." />
+    <meta property="og:image" content="%PUBLIC_URL%/images/profile-pic.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://samarthshinde.tech/" />
+    <meta property="twitter:title" content="Samarth Shinde | Tech Enthusiast & Developer" />
+    <meta property="twitter:description" content="Explore my portfolio showcasing AI projects, web applications and skills in no-code/low-code development." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/images/profile-pic.png" />
+    
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.svg" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <link rel="canonical" href="https://samarthshinde.tech/" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Samarth Shinde | Tech Enthusiast</title>
+    <title>Samarth Shinde | Tech Enthusiast & Developer</title>
+    
+    <!-- Preconnect to domains used -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Samarth Shinde",
+      "url": "https://samarthshinde.tech",
+      "image": "https://samarthshinde.tech/images/profile-pic.png",
+      "jobTitle": "No-Code/Low-Code Developer & Tech Community Leader",
+      "description": "Tech enthusiast specializing in no-code/low-code development, frontend technologies, and AI projects.",
+      "sameAs": [
+        "https://github.com/Samarth40",
+        "https://www.linkedin.com/in/samarthshinde"
+      ],
+      "knowsAbout": ["React", "Web Development", "AI", "No-Code Tools", "Low-Code Development"]
+    }
+    </script>
+    
+    <!-- Portfolio Project Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Samarth Shinde Portfolio",
+      "url": "https://samarthshinde.tech",
+      "description": "Personal portfolio showcasing projects, skills, and professional experience of Samarth Shinde",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://samarthshinde.tech/#projects",
+        "query-input": "required name=search_term"
+      }
+    }
+    </script>
+    
+    <!-- Google Analytics (Replace G-XXXXXXXXXX with your actual measurement ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

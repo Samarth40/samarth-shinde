@@ -122,9 +122,9 @@ const Header = () => {
                 className="flex items-center gap-6 justify-center md:justify-start pt-4"
               >
                 {[
-                  { icon: FaGithub, href: 'https://github.com/Samarth40' },
-                  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/samarth-shinde-791072271/' },
-                  { icon: FaTwitter, href: 'https://x.com/Samarth4033' }
+                  { icon: FaGithub, href: 'https://github.com/Samarth40', label: 'GitHub Profile' },
+                  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/samarth-shinde-791072271/', label: 'LinkedIn Profile' },
+                  { icon: FaTwitter, href: 'https://x.com/Samarth4033', label: 'Twitter/X Profile' }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -134,6 +134,7 @@ const Header = () => {
                     className="text-secondary hover:text-primary transform hover:-translate-y-1 transition-all"
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label={social.label}
                   >
                     <social.icon size={24} />
                   </motion.a>
@@ -178,8 +179,11 @@ const Header = () => {
                   {/* Image */}
                   <img
                     src="/images/profile-pic.png"
-                    alt="Samarth Shinde"
+                    alt="Samarth Shinde - No-Code/Low-Code Developer and Tech Community Leader"
                     className="w-full h-full rounded-full object-cover relative z-10"
+                    loading="eager"
+                    width="400"
+                    height="400"
                   />
 
                   {/* Decorative Elements */}

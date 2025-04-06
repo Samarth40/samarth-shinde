@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap location
+Sitemap: https://samarthshinde.tech/sitemap.xml
+
+# Crawl delay for heavy resources
+User-agent: *
+Crawl-delay: 1
